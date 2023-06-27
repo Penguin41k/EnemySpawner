@@ -9,15 +9,15 @@ public class Spawner : MonoBehaviour
     [SerializeField] private Transform _spawnPoints;
     [SerializeField] private GameObject[] _enemies;
 
-    private Transform[] _points;
+    private Transform[] _creationPoints;
 
     void Start()
     {
-        _points = new Transform[_spawnPoints.childCount];
+        _creationPoints = new Transform[_spawnPoints.childCount];
 
-        for (int i =0; i< _points.Count() ; i++) 
+        for (int i =0; i< _creationPoints.Count() ; i++) 
         {
-            _points[i]= _spawnPoints.GetChild(i).transform;
+            _creationPoints[i]= _spawnPoints.GetChild(i).transform;
         }
 
         StartCoroutine(Spawn());
@@ -27,11 +27,11 @@ public class Spawner : MonoBehaviour
     {
         var timer = new WaitForSeconds(_spawnTimeInterval);
 
-        for (int i = 0; i < _points.Count(); i++)
+        for (int i = 0; i < _creationPoints.Count(); i++)
         {
             int numberOfEnemy = Random.Range(0,_enemies.Length);
 
-            Instantiate(_enemies[numberOfEnemy], _points[i].transform.position, Quaternion.identity);
+            Instantiate(_enemies[numberOfEnemy], _creationPoints[i].transform.position, Quaternion.identity);
             yield return timer;
         }
     }
