@@ -7,11 +7,11 @@ public class Spawner : MonoBehaviour
 {
     [SerializeField] private float _spawnTimeInterval;
     [SerializeField] private Transform _spawnPoints;
-    [SerializeField] private GameObject[] _enemies;
+    [SerializeField] private Enemy[] _enemies;
 
     private Transform[] _creationPoints;
 
-    void Start()
+    private void Start()
     {
         _creationPoints = new Transform[_spawnPoints.childCount];
 
